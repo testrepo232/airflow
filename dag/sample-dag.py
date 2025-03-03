@@ -1,10 +1,8 @@
 from airflow import DAG
 from datetime import timedelta, datetime
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
-from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
 from airflow.models import Variable
 from kubernetes.client import models as k8s
-from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 default_args = {
    'depends_on_past': False,
@@ -29,9 +27,10 @@ with DAG(
        trigger_rule="all_success",
        depends_on_past=False,
        retries=3,
-       application_file="new-spark-pi.yaml",
+       application_file="new-spark-pi.yaml",  # Pointing to your updated YAML file
        namespace="spark-jobs",
-       kubernetes_conn_id="myk8s",
+       kubernetes_conn_id="myk8s",  # Ensure your k8s connection is set correctly
        do_xcom_push=True,
        dag=dag
    )
+
