@@ -1,21 +1,20 @@
 from airflow import DAG
 from datetime import timedelta, datetime
-from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import 
-SparkKubernetesOperator
-from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import 
-SparkKubernetesSensor
+from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
+from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
 from airflow.models import Variable
 from kubernetes.client import models as k8s
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
-default_args={
+default_args = {
    'depends_on_past': False,
-   'email': ['[email protected]'],
+   'email': ['[email protected]'],
    'email_on_failure': False,
    'email_on_retry': False,
    'retries': 1,
    'retry_delay': timedelta(minutes=5)
 }
+
 with DAG(
    'my-second-dag',
    default_args=default_args,
@@ -38,3 +37,4 @@ with DAG(
        do_xcom_push=True,
        dag=dag
    )
+
