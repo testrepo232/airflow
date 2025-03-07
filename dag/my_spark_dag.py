@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from airflow.models import DAG
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 from airflow.utils.dates import days_ago
@@ -16,7 +18,7 @@ with DAG(
     # [START howto_operator_spark_submit]
     
     python_submit_job = SparkSubmitOperator(
-        application="/opt/spark-3.5.0-bin-hadoop3/examples/src/main/python/pi.py", task_id="python_job"
+        application="/opt/airflow/dags/repo/pi.py", task_id="python_job"
     )
     
 #    scala_submit_job = SparkSubmitOperator(
@@ -25,3 +27,4 @@ with DAG(
 #
 #    python_submit_job >> scala_submit_job
 #    
+#EOF
