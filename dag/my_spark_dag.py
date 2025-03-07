@@ -16,7 +16,7 @@ with DAG(
     # [START howto_operator_spark_submit]
     
     python_submit_job = SparkSubmitOperator(
-        application="./pi.py", task_id="python_job"
+        application="/opt/spark-3.5.0-bin-hadoop3/examples/src/main/python/pi.py", task_id="python_job"
     )
     
 #    scala_submit_job = SparkSubmitOperator(
