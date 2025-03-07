@@ -7,11 +7,11 @@ args = {
 }
 
 with DAG(
-    dag_id='example_spark_operator',
+    dag_id='my_spark_dag',
     default_args=args,
     schedule_interval=None,
     start_date=days_ago(2),
-    tags=['example'],
+    tags=['example','my_dag'],
 ) as dag:
     # [START howto_operator_spark_submit]
     
